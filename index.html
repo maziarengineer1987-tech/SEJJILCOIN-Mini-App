@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SEJJIL COIN Mini App</title>
+
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+
+body{
+
+margin:0;
+
+height:100vh;
+
+background-image:url("background.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+font-family:Arial, sans-serif;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+.overlay{
+
+min-height:100vh;
+
+background:rgba(0,0,0,0.65);
+
+padding-top:20px;
+
+}
+
+
+
+h1{
+
+font-size:34px;
+
+}
+
+
+
+.logo{
+
+width:220px;
+
+margin-top:20px;
+
+}
+
+
+
+.balance{
+
+font-size:25px;
+
+margin:20px;
+
+font-weight:bold;
+
+}
+
+
+
+.coin{
+
+width:180px;
+
+cursor:pointer;
+
+transition:0.1s;
+
+}
+
+
+
+.coin:active{
+
+transform:scale(0.85);
+
+}
+
+
+
+.energy-box{
+
+width:80%;
+
+height:20px;
+
+background:#333;
+
+border-radius:20px;
+
+margin:20px auto;
+
+overflow:hidden;
+
+}
+
+
+
+.energy{
+
+height:100%;
+
+background:gold;
+
+width:100%;
+
+}
+
+
+
+.task{
+
+background:rgba(0,0,0,0.7);
+
+width:85%;
+
+margin:15px auto;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+
+
+button{
+
+background:#f5c400;
+
+border:0;
+
+padding:12px 25px;
+
+border-radius:25px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+
+
+button:hover{
+
+opacity:.8;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="overlay">
+
+
+<h1>
+SEJJIL COIN
+</h1>
+
+
+
+<img class="logo" src="token.png">
+
+
+
+<div class="balance">
+
+SJL BALANCE:
+
+<span id="coins">
+0
+</span>
+
+</div>
+
+
+
+
+<img class="coin" 
+src="token.png"
+onclick="tap()">
+
+
+
+
+
+<div class="energy-box">
+
+<div class="energy" id="energy">
+
+</div>
+
+</div>
+
+
+<p>
+⚡ Energy:
+<span id="energyText">
+1000
+</span>
+/1000
+
+</p>
+
+
+
+
+
+<div class="task">
+
+
+<h3>
+Join Telegram Community
+</h3>
+
+
+<button onclick="telegram()">
+
+JOIN +10,000 SJL
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="task">
+
+
+<h3>
+Follow SEJJIL X
+</h3>
+
+
+<button onclick="twitter()">
+
+FOLLOW +10,000 SJL
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+let coins = 
+Number(localStorage.getItem("coins")) || 0;
+
+
+let energy =
+Number(localStorage.getItem("energy")) || 1000;
+
+
+
+let telegramClaimed =
+localStorage.getItem("telegramClaimed") || false;
+
+
+
+let twitterClaimed =
+localStorage.getItem("twitterClaimed") || false;
+
+
+
+
+function update(){
+
+
+document.getElementById("coins").innerHTML =
+coins;
+
+
+document.getElementById("energyText").innerHTML =
+energy;
+
+
+
+document.getElementById("energy").style.width =
+(energy/1000*100)+"%";
+
+
+
+localStorage.setItem("coins",coins);
+
+localStorage.setItem("energy",energy);
+
+
+}
+
+
+
+update();
+
+
+
+
+
+
+function tap(){
+
+
+if(energy <=0){
+
+alert("No Energy");
+
+return;
+
+}
+
+
+
+coins++;
+
+energy--;
+
+
+update();
+
+
+
+}
+
+
+
+
+
+
+
+function telegram(){
+
+
+
+if(telegramClaimed){
+
+
+alert("Telegram reward already claimed");
+
+
+return;
+
+
+}
+
+
+
+window.open(
+
+"https://t.me/YOUR_TELEGRAM_LINK",
+
+"_blank"
+
+);
+
+
+
+coins +=10000;
+
+
+
+telegramClaimed=true;
+
+
+
+localStorage.setItem(
+"telegramClaimed",
+true
+);
+
+
+
+update();
+
+
+
+}
+
+
+
+
+
+
+
+
+function twitter(){
+
+
+
+if(twitterClaimed){
+
+
+alert("X reward already claimed");
+
+
+return;
+
+
+}
+
+
+
+
+window.open(
+
+"https://x.com/YOUR_X_LINK",
+
+"_blank"
+
+);
+
+
+
+
+coins +=10000;
+
+
+
+twitterClaimed=true;
+
+
+
+localStorage.setItem(
+
+"twitterClaimed",
+
+true
+
+);
+
+
+
+update();
+
+
+
+}
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+
+</html>
