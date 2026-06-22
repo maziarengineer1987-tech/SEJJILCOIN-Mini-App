@@ -115,7 +115,70 @@ transform:translateY(-100px);
 
 
 .energy-box{
+.token-area{
+text-align:center;
+}
 
+
+.token-logo{
+
+width:180px;
+height:180px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+display:block;
+
+margin:20px auto;
+
+background:none;
+
+}
+
+
+.join-box{
+
+text-align:center;
+
+margin-top:30px;
+
+}
+
+
+.join-box a{
+
+display:block;
+
+background:#f5d900;
+
+color:#111;
+
+padding:18px;
+
+margin:15px auto;
+
+width:80%;
+
+max-width:400px;
+
+border-radius:30px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+font-size:18px;
+
+}
+
+
+.join-box a:hover{
+
+opacity:.8;
+
+}
 width:85%;
 height:22px;
 background:#222;
@@ -203,7 +266,38 @@ SJL BALANCE:
 <img class="coin" src="token.png" onclick="tap(event)">
 
 
+<!-- SEJJIL LOGO -->
+<div class="token-area">
 
+<img src="token.png" class="token-logo">
+
+<h2>SJL BALANCE: <span id="balance">0</span></h2>
+
+</div>
+
+
+<!-- ENERGY -->
+<div class="energy">
+⚡️ Energy 1000 / 1000
+</div>
+
+
+<!-- Telegram & X Join -->
+<div class="join-box">
+
+<h3>Join SEJJILCOIN Community</h3>
+
+<a href="https://t.me/+PB-Qftc48jY1Njc0" target="_blank" onclick="addReward()">
+🚀 Join Telegram +10,000 SJL
+</a>
+
+
+<a href="https://x.com/SEJJILCOIN" target="_blank" onclick="addReward()">
+𝕏 Join X (Twitter) +10,000 SJL
+</a>
+
+
+</div>
 
 
 <div class="energy-box">
