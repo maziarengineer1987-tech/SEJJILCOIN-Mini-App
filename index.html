@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SEJJIL COIN Mini App</title>
-
 
 <style>
 
@@ -16,23 +13,15 @@
 box-sizing:border-box;
 }
 
-
 body{
 
 margin:0;
-
 height:100vh;
-
-background-image:url("background.jpg");
-
+background-image:url("background.jpg.png");
 background-size:cover;
-
 background-position:center;
-
 font-family:Arial, sans-serif;
-
 color:white;
-
 text-align:center;
 
 }
@@ -41,18 +30,17 @@ text-align:center;
 .overlay{
 
 min-height:100vh;
-
-background:rgba(0,0,0,0.65);
-
-padding-top:20px;
+background:rgba(0,0,0,0.55);
+padding-top:25px;
 
 }
 
 
-
 h1{
 
-font-size:34px;
+font-size:32px;
+letter-spacing:2px;
+text-shadow:0 0 15px gold;
 
 }
 
@@ -60,9 +48,9 @@ font-size:34px;
 
 .logo{
 
-width:220px;
-
-margin-top:20px;
+width:150px;
+margin:15px auto;
+display:block;
 
 }
 
@@ -70,11 +58,9 @@ margin-top:20px;
 
 .balance{
 
-font-size:25px;
-
-margin:20px;
-
+font-size:26px;
 font-weight:bold;
+margin:20px;
 
 }
 
@@ -82,11 +68,10 @@ font-weight:bold;
 
 .coin{
 
-width:180px;
-
+width:210px;
 cursor:pointer;
-
-transition:0.1s;
+transition:0.15s;
+filter:drop-shadow(0 0 20px gold);
 
 }
 
@@ -94,7 +79,36 @@ transition:0.1s;
 
 .coin:active{
 
-transform:scale(0.85);
+transform:scale(0.85) rotate(5deg);
+
+}
+
+
+
+.fly{
+
+position:absolute;
+font-size:30px;
+font-weight:bold;
+animation:up 1s forwards;
+
+}
+
+
+
+@keyframes up{
+
+0%{
+opacity:1;
+transform:translateY(0);
+}
+
+100%{
+
+opacity:0;
+transform:translateY(-100px);
+
+}
 
 }
 
@@ -102,16 +116,11 @@ transform:scale(0.85);
 
 .energy-box{
 
-width:80%;
-
-height:20px;
-
-background:#333;
-
+width:85%;
+height:22px;
+background:#222;
+margin:25px auto;
 border-radius:20px;
-
-margin:20px auto;
-
 overflow:hidden;
 
 }
@@ -121,10 +130,8 @@ overflow:hidden;
 .energy{
 
 height:100%;
-
-background:gold;
-
 width:100%;
+background:gold;
 
 }
 
@@ -132,15 +139,12 @@ width:100%;
 
 .task{
 
-background:rgba(0,0,0,0.7);
-
-width:85%;
-
+width:90%;
 margin:15px auto;
-
 padding:15px;
-
-border-radius:15px;
+background:rgba(255,255,255,0.12);
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.2);
 
 }
 
@@ -148,33 +152,30 @@ border-radius:15px;
 
 button{
 
-background:#f5c400;
-
-border:0;
-
-padding:12px 25px;
-
+width:90%;
+padding:14px;
+border:none;
 border-radius:25px;
-
+background:gold;
 font-weight:bold;
-
-cursor:pointer;
-
 font-size:16px;
+cursor:pointer;
 
 }
 
 
 
-button:hover{
+.footer{
 
+margin-top:20px;
+font-size:14px;
 opacity:.8;
 
 }
 
 
-</style>
 
+</style>
 
 </head>
 
@@ -185,10 +186,7 @@ opacity:.8;
 <div class="overlay">
 
 
-<h1>
-SEJJIL COIN
-</h1>
-
+<h1>🚀 SEJJIL COIN</h1>
 
 
 <img class="logo" src="token.png">
@@ -198,19 +196,14 @@ SEJJIL COIN
 <div class="balance">
 
 SJL BALANCE:
-
-<span id="coins">
-0
-</span>
+<span id="coins">0</span>
 
 </div>
 
 
 
 
-<img class="coin" 
-src="token.png"
-onclick="tap()">
+<img class="coin" src="token.png" onclick="tap(event)">
 
 
 
@@ -218,33 +211,19 @@ onclick="tap()">
 
 <div class="energy-box">
 
-<div class="energy" id="energy">
+<div class="energy"></div>
 
 </div>
 
-</div>
 
-
-<p>
-⚡ Energy:
-<span id="energyText">
-1000
-</span>
-/1000
-
-</p>
-
+<p>⚡ Energy 1000 / 1000</p>
 
 
 
 
 <div class="task">
 
-
-<h3>
-Join Telegram Community
-</h3>
-
+<h3>Join Telegram Community</h3>
 
 <button onclick="telegram()">
 
@@ -259,14 +238,9 @@ JOIN +10,000 SJL
 
 
 
-
 <div class="task">
 
-
-<h3>
-Follow SEJJIL X
-</h3>
-
+<h3>Follow SEJJIL on X</h3>
 
 <button onclick="twitter()">
 
@@ -280,6 +254,12 @@ FOLLOW +10,000 SJL
 
 
 
+<div class="footer">
+
+SEJJIL COIN — Digital Movement For Peace & Community
+
+</div>
+
 
 
 </div>
@@ -287,90 +267,61 @@ FOLLOW +10,000 SJL
 
 
 
-
-
 <script>
 
 
-
-let coins = 
+let coins =
 Number(localStorage.getItem("coins")) || 0;
 
 
-let energy =
-Number(localStorage.getItem("energy")) || 1000;
-
-
-
-let telegramClaimed =
-localStorage.getItem("telegramClaimed") || false;
-
-
-
-let twitterClaimed =
-localStorage.getItem("twitterClaimed") || false;
-
+document.getElementById("coins").innerHTML=coins;
 
 
 
 function update(){
 
-
-document.getElementById("coins").innerHTML =
-coins;
-
-
-document.getElementById("energyText").innerHTML =
-energy;
-
-
-
-document.getElementById("energy").style.width =
-(energy/1000*100)+"%";
-
-
+document.getElementById("coins").innerHTML=coins;
 
 localStorage.setItem("coins",coins);
 
-localStorage.setItem("energy",energy);
-
-
 }
 
 
 
-update();
 
 
-
-
-
-
-function tap(){
-
-
-if(energy <=0){
-
-alert("No Energy");
-
-return;
-
-}
-
+function tap(e){
 
 
 coins++;
 
-energy--;
-
-
 update();
 
 
 
+let x=document.createElement("div");
+
+x.className="fly";
+
+x.innerHTML="+1 SJL";
+
+x.style.left=e.clientX+"px";
+
+x.style.top=e.clientY+"px";
+
+
+document.body.appendChild(x);
+
+
+setTimeout(()=>{
+
+x.remove();
+
+},1000);
+
+
+
 }
-
-
 
 
 
@@ -379,54 +330,18 @@ update();
 function telegram(){
 
 
-
-if(telegramClaimed){
-
-
-alert("Telegram reward already claimed");
-
-
-return;
-
-
-}
-
-
-
 window.open(
-
 "https://t.me/YOUR_TELEGRAM_LINK",
-
 "_blank"
-
 );
-
 
 
 coins +=10000;
 
-
-
-telegramClaimed=true;
-
-
-
-localStorage.setItem(
-"telegramClaimed",
-true
-);
-
-
-
 update();
 
 
-
 }
-
-
-
-
 
 
 
@@ -434,58 +349,18 @@ update();
 function twitter(){
 
 
-
-if(twitterClaimed){
-
-
-alert("X reward already claimed");
-
-
-return;
-
-
-}
-
-
-
-
 window.open(
-
 "https://x.com/YOUR_X_LINK",
-
 "_blank"
-
 );
-
-
 
 
 coins +=10000;
 
-
-
-twitterClaimed=true;
-
-
-
-localStorage.setItem(
-
-"twitterClaimed",
-
-true
-
-);
-
-
-
 update();
 
 
-
 }
-
-
-
 
 
 
@@ -494,6 +369,5 @@ update();
 
 
 </body>
-
 
 </html>
